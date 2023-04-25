@@ -29,7 +29,7 @@ class Solution
         int turn = 0; // variable to count the number of turns that have passed
         while (player1Deck.Count > 0 && player2Deck.Count > 0)
         {
-            #region 카드덱 확인
+            #region 카드게임 턴,덱 확인(디버깅용 로그)
             //Console.Error.WriteLine($"player1Deck: {player1Deck.Count}, player2Deck: {player2Deck.Count}");
             Console.Error.Write($"{turn}번째 턴 player1Deck: ");
             foreach (string card in player1Deck)
