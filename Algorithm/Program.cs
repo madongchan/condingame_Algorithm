@@ -102,10 +102,10 @@ class Solution
         for (int i = 0; i < 3; i++)
         {
             //카드가 한장이 남아있으면 카드를 두번 뽑기 때문에 무승부가 나게 됨
-            if (player1Deck.Count < 2 && player2Deck.Count < 2)
+            if (player1Deck.Count < 2 || player2Deck.Count < 2)
             {
                 Console.WriteLine("PAT");
-                return;
+                Environment.Exit(0);
             }
             //카드 3장을 각가의 임시 전쟁카드덱에 저장
             temporary_warDeck1.Enqueue(player1Deck.Dequeue());
@@ -155,9 +155,10 @@ class Solution
     static int CompareCards(string card1, string card2)
     {
         string cardValues = "23456789" + "10" + "JQKA";
-        int cardValueIndex1 = card1[0] == '1' && card1[1] == '0' ? 9 : cardValues.IndexOf(card1[0]);
-        int cardValueIndex2 = card2[0] == '1' && card2[1] == '0' ? 9 : cardValues.IndexOf(card2[0]);
+        int cardValueIndex1 = card1[0] == '1' && card1[1] == '0' ? 8 : cardValues.IndexOf(card1[0]);
+        int cardValueIndex2 = card2[0] == '1' && card2[1] == '0' ? 8 : cardValues.IndexOf(card2[0]);
 
         return (cardValueIndex1 - cardValueIndex2);
     }
+
 }
