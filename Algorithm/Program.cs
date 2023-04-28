@@ -7,7 +7,7 @@ class Solution
     static Queue<string> player2Deck = new Queue<string>();
     static Queue<string> temporary_warDeck1 = new Queue<string>();
     static Queue<string> temporary_warDeck2 = new Queue<string>();
-    static int turn = 0;
+    static int gameturn = 0;
     static void Main(string[] args)
     {
 
@@ -27,11 +27,11 @@ class Solution
 
         while (player1Deck.Count > 0 && player2Deck.Count > 0)
         {
-            ++turn;
+            ++gameturn;
             Fight();
             #region Check the progress of the card game
             //Console.Error.WriteLine($"player1Deck: {player1Deck.Count}, player2Deck: {player2Deck.Count}");
-            Console.Error.Write($"{turn}번째 턴 player1Deck: ");
+            Console.Error.Write($"{gameturn}번째 턴 player1Deck: ");
             foreach (string card in player1Deck)
             {
                 Console.Error.Write($"{card} ");
@@ -45,7 +45,7 @@ class Solution
             #endregion
 
         }
-        Console.WriteLine(player1Deck.Count > 0 ? $"1 {turn}" : $"2 {turn}");
+        Console.WriteLine(player1Deck.Count > 0 ? $"1 {gameturn}" : $"2 {gameturn}");
     }
 
     static int Fight(string IsWarFun = "Fight")
@@ -81,11 +81,16 @@ class Solution
         }
     }
 
-    static void War(string player1Card, string player2Card)
+    static void War(string player1Card, string player2Card, int first = 1)
     {
-
-        temporary_warDeck1.Enqueue(player1Card);
-        temporary_warDeck2.Enqueue(player2Card);
+        //War이 재귀적으로 실행될 때, 마지막 카드로 결투를 하는데
+        //마지막 카드를 중복해서 임시 전쟁 덱에 저장하기 때문에
+        //처음 War에서만 실행될수 있게끔
+        if (first == 1)
+        {
+            temporary_warDeck1.Enqueue(player1Card);
+            temporary_warDeck2.Enqueue(player2Card);
+        }
 
         for (int i = 0; i < 3; i++)
         {
@@ -136,7 +141,7 @@ class Solution
         }
         else
         {
-            War(card1, card2);
+            War(card1, card2, 2);
         }
 
     }
