@@ -83,9 +83,9 @@ class Solution
 
     static void War(string player1Card, string player2Card, int first = 1)
     {
-        //War이 재귀적으로 실행될 때, 마지막 카드로 결투를 하는데
-        //마지막 카드를 중복해서 임시 전쟁 덱에 저장하기 때문에
-        //처음 War에서만 실행될수 있게끔
+        //War함수가 재귀적으로 실행될 때, 결투하고 세장 버리고 그 다음 카드로 결투를 하는데
+        //다음 카드를 중복해서 임시 전쟁 덱에 저장하기 때문에
+        //처음 War함수일때만 실행될수 있게
         if (first == 1)
         {
             temporary_warDeck1.Enqueue(player1Card);
