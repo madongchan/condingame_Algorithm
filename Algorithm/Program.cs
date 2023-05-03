@@ -3,19 +3,11 @@ using System.Collections.Generic;
 
 class Solution
 {
-<<<<<<< Updated upstream
-    static Queue<string> player1Deck = new Queue<string>();
-    static Queue<string> player2Deck = new Queue<string>();
-    static Queue<string> temporary_warDeck1 = new Queue<string>();
-    static Queue<string> temporary_warDeck2 = new Queue<string>();
-    static int gameturn = 0;
-=======
     static Queue<string> player1Deck = new Queue<string>(); // 1번 플레이어 카드 덱
     static Queue<string> player2Deck = new Queue<string>(); // 2번 플레이어 카드 덱
     static Queue<string> temporary_warDeck1 = new Queue<string>(); // 임시 전쟁 덱 1
     static Queue<string> temporary_warDeck2 = new Queue<string>(); // 임시 전쟁 덱 2
     static int gameturn = 0; // 게임 턴 수
->>>>>>> Stashed changes
     static void Main(string[] args)
     {
         // 입력 처리
@@ -41,13 +33,8 @@ class Solution
 
             // 게임 진행 상황 출력
             #region Check the progress of the card game
-<<<<<<< Updated upstream
-            //Console.Error.WriteLine($"player1Deck: {player1Deck.Count}, player2Deck: {player2Deck.Count}");
-            Console.Error.Write($"{gameturn}번째 턴 player1Deck: ");
-=======
             Console.Error.WriteLine($"{gameturn}번째 턴");
             Console.Error.Write($"player1Deck: ");
->>>>>>> Stashed changes
             foreach (string card in player1Deck)
             {
                 Console.Error.Write($"{card} ");
@@ -61,11 +48,8 @@ class Solution
             #endregion
 
         }
-<<<<<<< Updated upstream
-=======
 
         // 결과 출력
->>>>>>> Stashed changes
         Console.WriteLine(player1Deck.Count > 0 ? $"1 {gameturn}" : $"2 {gameturn}");
     }
 
@@ -111,22 +95,10 @@ class Solution
         }
     }
 
-    static void War(string player1Card, string player2Card, int first = 1)
+    static void War(string player1Card, string player2Card)
     {
-<<<<<<< Updated upstream
-        //War함수가 재귀적으로 실행될 때, 결투하고 세장 버리고 그 다음 카드로 결투를 하는데
-        //다음 카드를 중복해서 임시 전쟁 덱에 저장하기 때문에
-        //처음 War함수일때만 실행될수 있게
-        if (first == 1)
-        {
-            temporary_warDeck1.Enqueue(player1Card);
-            temporary_warDeck2.Enqueue(player2Card);
-        }
-
-=======
         // 3장의 카드를 뽑아 내려놓습니다.
         // (나중에 다시 이긴 사람의 덱에 들어가니 임시 전쟁덱에 넣습니다.)
->>>>>>> Stashed changes
         for (int i = 0; i < 3; i++)
         {
             // 플레이어 1 혹은 플레이어 2의 카드가 2장 이하로 남았으면 비깁니다.
@@ -179,7 +151,7 @@ class Solution
         }
         else // 다시 한 번 무승부가 되면 재귀적으로 War 함수를 호출합니다
         {
-            War(card1, card2, 2);
+            War(card1, card2);
         }
 
     }
