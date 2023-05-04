@@ -62,10 +62,10 @@ class Solution
     static int get_word_score(string word)
     {
         int score = 0;
-        foreach (var word_char in word)
+        foreach (char word_char in word)
         {
             score += letterPoints[word_char];
         }
-        return 0;
+        return score;
     }
 }
