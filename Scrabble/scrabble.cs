@@ -5,10 +5,6 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
 class Solution
 {
     static Dictionary<char, int> letterPoints = new Dictionary<char, int>()
@@ -29,16 +25,16 @@ class Solution
         for (int i = 0; i < N; i++)
         {
             dictionary[i] = Console.ReadLine();
-            
+
         }
         string letters = Console.ReadLine();
 
         int max_score = 0; // 최고 점수
-        string max_score_world = null; // 최고 점수에 해당하는 단어
+        string max_score_world = ""; // 최고 점수에 해당하는 단어
 
-        foreach (string word in dictionary)
+        foreach (var word in dictionary)
         {
-            if(is_word_feasible(word, letters))
+            if (is_word_feasible(word, letters))
             {
                 int score = get_word_score(word);
                 if (score > max_score)
@@ -55,20 +51,18 @@ class Solution
     //반복문을 이용하여 사전의 모든 단어를 확인하고, 각 단어가 주어진 알파벳 꾸러미로 조합 가능한지 확인하는 함수
     static bool is_word_feasible(string word, string letters)
     {
-        bool feasible = true;
         // 단어가 조합 가능한지 확인하기 위해서는 다음 2가지 조건이 필요하다.
         // 1. 단어에 쓰인 모든 글자가 알파벳 꾸러미에 있는지 확인합니다.
         // 2. 단어에 쓰인 글자의 개수만큼 알파벳 꾸러미에 있는지 확인합니다.
 
-
-        return feasible;
+        return (word.All(c => letters.Contains(c) && word.Count(x => x == c) <= letters.Count(y => y == c)));
     }
 
     //주어진 알파벳으로 글자로 조합 가능한 경우, 단어의 점수를 계산하는 함수
     static int get_word_score(string word)
     {
         int score = 0;
-        foreach(var word_char in word)
+        foreach (var word_char in word)
         {
             score += letterPoints[word_char];
         }
