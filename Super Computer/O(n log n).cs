@@ -5,7 +5,6 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
-//풀이 방법: 종료일이 가장 빠른걸 선택하고 기간이 중복되는건 제거한다
 class Solution
 {
     static void Main(string[] args)
@@ -21,11 +20,23 @@ class Solution
 
             periodLists.Add((startDay, endDay)); // 연구기간 리스트에 저장
         }
-
+        //과제 종료일이 가장 빠른 것부터 처리하기 위해 정렬함
+        periodLists = periodLists.OrderBy(x => x.endDay).ToList();
         foreach (var period in periodLists)
         {
-
+            Console.Error.WriteLine(period);
         }
-        Console.WriteLine("answer");
+        int maxCount = 0;
+        int currentEndDay = -1; // 마지막으로 선택한 연구 종료일
+        foreach (var period in periodLists)
+        {
+            // 기간이 겹치지 않는 경우
+            if (period.startDay > currentEndDay)
+            {
+                maxCount++;
+                currentEndDay = period.endDay;
+            }
+        }
+        Console.WriteLine(maxCount);
     }
 }
