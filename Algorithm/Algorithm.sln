@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarCardGame", "WarCardGame.csproj", "{F7854B59-8C0F-4057-A081-ABA2DA683030}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scrabble", "..\Scrabble\Scrabble.csproj", "{512F9A31-07DF-4F52-B461-5A3AD09E5143}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHADOWS OF THE KNIGHT", "..\SHADOWS OF THE KNIGHT\SHADOWS OF THE KNIGHT.csproj", "{495652E9-625C-43C7-B353-E03FF149E86C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Gift", "..\The Gift\The Gift.csproj", "{84A0F201-DB23-4AF1-B36D-2A147BC1CC2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Super Computer", "..\Super Computer\Super Computer.csproj", "{1D8FFBCD-10E3-46FB-B7A9-38D9E7B36957}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Super Computer", "..\Super Computer\Super Computer.csproj", "{1D8FFBCD-10E3-46FB-B7A9-38D9E7B36957}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarCardGame", "..\War Card Game\WarCardGame.csproj", "{50DDA743-6612-47BC-8854-35783A2758E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dwarfs standing on the shoulders of giants", "Dwarfs standing on the shoulders of giants\Dwarfs standing on the shoulders of giants.csproj", "{203B860D-94CE-4332-89B7-FABD47C4DC10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F7854B59-8C0F-4057-A081-ABA2DA683030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7854B59-8C0F-4057-A081-ABA2DA683030}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7854B59-8C0F-4057-A081-ABA2DA683030}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7854B59-8C0F-4057-A081-ABA2DA683030}.Release|Any CPU.Build.0 = Release|Any CPU
 		{512F9A31-07DF-4F52-B461-5A3AD09E5143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{512F9A31-07DF-4F52-B461-5A3AD09E5143}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{512F9A31-07DF-4F52-B461-5A3AD09E5143}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +37,14 @@ Global
 		{1D8FFBCD-10E3-46FB-B7A9-38D9E7B36957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D8FFBCD-10E3-46FB-B7A9-38D9E7B36957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D8FFBCD-10E3-46FB-B7A9-38D9E7B36957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50DDA743-6612-47BC-8854-35783A2758E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50DDA743-6612-47BC-8854-35783A2758E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50DDA743-6612-47BC-8854-35783A2758E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50DDA743-6612-47BC-8854-35783A2758E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203B860D-94CE-4332-89B7-FABD47C4DC10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203B860D-94CE-4332-89B7-FABD47C4DC10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203B860D-94CE-4332-89B7-FABD47C4DC10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203B860D-94CE-4332-89B7-FABD47C4DC10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
