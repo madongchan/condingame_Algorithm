@@ -7,7 +7,7 @@ class Solution
     static Dictionary<int, List<int>> connection = new Dictionary<int, List<int>>();
 
     // 해당 key에서 시작하여 가능한 루트를 찾아서 최대 깊이를 반환하는 함수
-    static int LetsCount(int number)
+    static int Stack_DFS(int number)
     {
         int max = 0; // 현재 루트에서 탐색한 최대 깊이를 저장할 변수
         if (!connection.ContainsKey(number) || connection[number].Count == 0)
@@ -18,7 +18,7 @@ class Solution
             // 현재 루트의 정점에 연결된 다른 정점들을 모두 탐색
             foreach (int item in connection[number])
             {
-                int temp = LetsCount(item); // 현재 정점에서부터 시작하여 탐색한 최대 깊이를 구함
+                int temp = Stack_DFS(item); // 현재 정점에서부터 시작하여 탐색한 최대 깊이를 구함
                 if (max < temp)
                     max = temp; // 구한 최대 깊이가 현재까지 구한 최대 깊이보다 큰 경우, 최대 깊이를 갱신
             }
@@ -48,7 +48,7 @@ class Solution
 
         foreach (KeyValuePair<int, List<int>> item in connection) // 루트 노드가 한개 이상일 때가 있으므로 
         {
-            int temp = LetsCount(item.Key); // 각 루트에 대해 최대 깊이를 계산
+            int temp = Stack_DFS(item.Key); // 각 루트에 대해 최대 깊이를 계산
             if (max < temp)
                 max = temp; // 계산한 최대 깊이가 현재까지 구한 최대 깊이보다 큰 경우, 최대 깊이를 갱신
         }
