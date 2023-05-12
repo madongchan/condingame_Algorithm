@@ -3,32 +3,49 @@ using System.Collections.Generic;
 
 class Graph
 {
-    private int V; // 노드 수
-    private List<int>[] adj; // 인접 리스트
+    private int V;
+    private List<int>[] adj;
 
     public Graph(int v)
     {
         V = v;
         adj = new List<int>[V];
 
-        // 인접 리스트 초기화
         for (int i = 0; i < V; i++)
         {
             adj[i] = new List<int>();
         }
     }
 
-    // 노드 u와 노드 v를 연결하는 간선 추가
     public void AddEdge(int u, int v)
     {
         adj[u].Add(v);
-        //adj[v].Add(u); // 무방향 그래프일 경우 양방향으로 추가해야 함
     }
 
-    // 노드 v와 연결된 모든 노드들 반환
-    public List<int> Adj(int v)
+    public int Height()
     {
-        return adj[v];
+        int maxHeight = 0;
+
+        for (int i = 0; i < V; i++)
+        {
+            int height = HeightUtil(i);
+            maxHeight = Math.Max(maxHeight, height);
+        }
+
+        return maxHeight;
+    }
+
+    private int HeightUtil(int v)
+    {
+        int maxHeight = 0;
+
+        foreach (int adjNode in adj[v])
+        {
+            int height = HeightUtil(adjNode);
+            maxHeight = Math.Max(maxHeight, height);
+        }
+
+        return maxHeight + 1;
     }
 }
 
@@ -36,22 +53,17 @@ class Program
 {
     static void Main(string[] args)
     {
-        Graph g = new Graph(5);
+        Graph g = new Graph(7);
 
         g.AddEdge(0, 1);
-        g.AddEdge(0, 4);
-        g.AddEdge(1, 2);
+        g.AddEdge(0, 2);
         g.AddEdge(1, 3);
         g.AddEdge(1, 4);
-        g.AddEdge(2, 3);
-        g.AddEdge(3, 4);
+        g.AddEdge(2, 5);
+        g.AddEdge(2, 6);
 
-        // 노드 1과 연결된 모든 노드 출력
-        List<int> adjNodes = g.Adj(0);
-        Console.Write("Node 1's adjacent nodes: ");
-        foreach (int n in adjNodes)
-        {
-            Console.Write(n + " ");
-        }
+        int height = g.Height();
+
+        Console.WriteLine("Graph height: " + height);
     }
 }
