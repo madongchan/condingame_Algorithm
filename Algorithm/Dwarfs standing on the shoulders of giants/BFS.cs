@@ -1,69 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class Graph
+class Solution
 {
-    private int V;
-    private List<int>[] adj;
+    // key가 정점, value가 해당 정점에서 진행 가능한 정점들의 목록인 Dictionary
+    static Dictionary<int, List<int>> connection = new Dictionary<int, List<int>>();
 
-    public Graph(int v)
+    // 해당 key에서 시작하여 가능한 루트를 찾아서 최대 깊이를 반환하는 함수
+    static int LetsCount(int number)
     {
-        V = v;
-        adj = new List<int>[V];
-
-        for (int i = 0; i < V; i++)
+        int max = 0; // 현재 루트에서 탐색한 최대 깊이를 저장할 변수
+        if (!connection.ContainsKey(number) || connection[number].Count == 0)
+            // 현재 루트의 정점에 연결된 다른 정점이 없는 경우
+            return 0;
+        else
         {
-            adj[i] = new List<int>();
+            // 현재 루트의 정점에 연결된 다른 정점들을 모두 탐색
+            foreach (int item in connection[number])
+            {
+                int temp = LetsCount(item); // 현재 정점에서부터 시작하여 탐색한 최대 깊이를 구함
+                if (max < temp)
+                    max = temp; // 구한 최대 깊이가 현재까지 구한 최대 깊이보다 큰 경우, 최대 깊이를 갱신
+            }
         }
+        return max + 1; // 현재 루트를 포함한 최대 깊이를 반환
     }
 
-    public void AddEdge(int u, int v)
-    {
-        adj[u].Add(v);
-    }
-
-    public int Height()
-    {
-        int maxHeight = 0;
-
-        for (int i = 0; i < V; i++)
-        {
-            int height = HeightUtil(i);
-            maxHeight = Math.Max(maxHeight, height);
-        }
-
-        return maxHeight;
-    }
-
-    private int HeightUtil(int v)
-    {
-        int maxHeight = 0;
-
-        foreach (int adjNode in adj[v])
-        {
-            int height = HeightUtil(adjNode);
-            maxHeight = Math.Max(maxHeight, height);
-        }
-
-        return maxHeight + 1;
-    }
-}
-
-class Program
-{
     static void Main(string[] args)
     {
-        Graph g = new Graph(7);
+        int n = int.Parse(Console.ReadLine()); // 정점 간의 관계 수
+        for (int i = 0; i < n; i++)
+        {
+            // 두 사람 간의 관계를 입력받음 (x가 y를 영향을 미치는 관계)
+            string[] inputs = Console.ReadLine().Split(' ');
+            int x = int.Parse(inputs[0]);
+            int y = int.Parse(inputs[1]);
 
-        g.AddEdge(0, 1);
-        g.AddEdge(0, 2);
-        g.AddEdge(1, 3);
-        g.AddEdge(1, 4);
-        g.AddEdge(2, 5);
-        g.AddEdge(2, 6);
+            // 딕셔너리에 없는 키를 조회하려고 하면 KeyNotFoundException이 발생하기 때문에,
+            // connection 딕셔너리에 x 키가 없을 경우 새로운 리스트를 할당하여 이 키에 대한 값을 추가하는 것입니다.
+            if (!connection.ContainsKey(x))
+                connection[x] = new List<int>();
 
-        int height = g.Height();
+            connection[x].Add(y); // 정점 x에서 정점 y로 가는 간선 추가
+        }
 
-        Console.WriteLine("Graph height: " + height);
+        int max = 0; // 모든 루트에 대해 최대 깊이를 비교하여 가장 큰 값을 저장할 변수
+
+        foreach (KeyValuePair<int, List<int>> item in connection) // 루트 노드가 한개 이상일 때가 있으므로 
+        {
+            int temp = LetsCount(item.Key); // 각 루트에 대해 최대 깊이를 계산
+            if (max < temp)
+                max = temp; // 계산한 최대 깊이가 현재까지 구한 최대 깊이보다 큰 경우, 최대 깊이를 갱신
+        }
+
+        // 최대 깊이 + 1 = 가장 긴 영향관계 연쇄에 참여한 사람 수
+        Console.WriteLine(max + 1);
     }
 }
