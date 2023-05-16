@@ -1,27 +1,29 @@
 ﻿public class Node
 {
     public int Value { get; set; }
+    public bool Visited { get; set; }
     public List<Node> Neighbors { get; set; }
 
     public Node(int value)
     {
         Value = value;
+        Visited = false;
         Neighbors = new List<Node>();
     }
 }
 
 public class Graph
 {
-    public List<Node> Nodes { get; set; }
+    Dictionary<int, Node> Nodes { get; set; }
 
     public Graph()
     {
-        Nodes = new List<Node>();
+        Nodes = new Dictionary<int, Node> ();
     }
 
     public void AddNode(int value)
     {
-        Nodes.Add(new Node(value));
+        Nodes.Add(value, new Node(value));
     }
 
     public void AddEdge(int from, int to)
@@ -32,11 +34,9 @@ public class Graph
 
     public void BFS(int start, int goal)
     {
-        int maxValue = Nodes.Max(node => node.Value);
-        bool[] visited = new bool[maxValue + 1];
         Queue<Node> queue = new Queue<Node>();
         queue.Enqueue(Nodes[start]);
-        visited[start] = true;
+        Nodes[start].Visited = true;
 
         List<int> path = new List<int>();
         Dictionary<int, int> parent = new Dictionary<int, int>();
@@ -47,15 +47,21 @@ public class Graph
 
             foreach (Node neighbor in current.Neighbors)
             {
-                if (!visited[neighbor.Value])
+                // 인접 노드가 방문하지 않은 경우
+                if (neighbor.Visited == false)
                 {
+                    // 인접 노드 큐에 삽입
                     queue.Enqueue(neighbor);
-                    visited[neighbor.Value] = true;
+
+                    // 방문 여부 표시
+                    Nodes[neighbor.Value].Visited = true;
+
+                    // 부모 노드 저장
                     parent[neighbor.Value] = current.Value;
 
+                    // 목표 노드에 도달한 경우
                     if (neighbor.Value == goal)
                     {
-                        // 목표 노드에 도달한 경우 경로 기록을 종료
                         break;
                     }
                 }
@@ -85,6 +91,40 @@ public class Graph
 }
 
 class Player
+{
+    static void Main(string[] args)
+    {
+        string[] inputs;
+        inputs = Console.ReadLine().Split(' ');
+        int N = int.Parse(inputs[0]); // the total number of nodes in the level, including the gateways
+        int L = int.Parse(inputs[1]); // the number of links
+        int E = int.Parse(inputs[2]); // the number of exit gateways
+        for (int i = 0; i < L; i++)
+        {
+            inputs = Console.ReadLine().Split(' ');
+            int N1 = int.Parse(inputs[0]); // N1 and N2 defines a link between these nodes
+            int N2 = int.Parse(inputs[1]);
+        }
+        for (int i = 0; i < E; i++)
+        {
+            int EI = int.Parse(Console.ReadLine()); // the index of a gateway node
+        }
+
+        // game loop
+        while (true)
+        {
+            int SI = int.Parse(Console.ReadLine()); // The index of the node on which the Bobnet agent is positioned this turn
+
+            // Write an action using Console.WriteLine()
+            // To debug: Console.Error.WriteLine("Debug messages...");
+
+
+            // Example: 0 1 are the indices of the nodes you wish to sever the link between
+            Console.WriteLine("0 1");
+        }
+    }
+}
+class Test
 {
     static void Main(string[] args)
     {
