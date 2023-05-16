@@ -14,7 +14,7 @@
 
 public class Graph
 {
-    Dictionary<int, Node> Nodes { get; set; }
+    public Dictionary<int, Node> Nodes { get; set; }
 
     public Graph()
     {
@@ -32,7 +32,7 @@ public class Graph
         Nodes[to].Neighbors.Add(Nodes[from]);
     }
 
-    public void BFS(int start, int goal)
+    public List<int> Find_shorted_path(int start, int goal)
     {
         Queue<Node> queue = new Queue<Node>();
         queue.Enqueue(Nodes[start]);
@@ -84,7 +84,7 @@ public class Graph
 
         // 마지막 노드 출력
         Console.Error.Write(path[path.Count - 1]);
-
+        return path;
     }
 
 
@@ -94,55 +94,44 @@ class Player
 {
     static void Main(string[] args)
     {
+        Graph graph = new Graph();
+
         string[] inputs;
         inputs = Console.ReadLine().Split(' ');
         int N = int.Parse(inputs[0]); // the total number of nodes in the level, including the gateways
+        for (int i = 0; i < N; i++)
+        {
+            graph.AddNode(i);
+        }
         int L = int.Parse(inputs[1]); // the number of links
         int E = int.Parse(inputs[2]); // the number of exit gateways
+        int[] EI = new int[E]; // the array of gateway node
         for (int i = 0; i < L; i++)
         {
             inputs = Console.ReadLine().Split(' ');
             int N1 = int.Parse(inputs[0]); // N1 and N2 defines a link between these nodes
             int N2 = int.Parse(inputs[1]);
+            graph.AddEdge(N1, N2);
         }
         for (int i = 0; i < E; i++)
         {
-            int EI = int.Parse(Console.ReadLine()); // the index of a gateway node
+            EI[i] = int.Parse(Console.ReadLine()); // the index of a gateway node
         }
 
         // game loop
         while (true)
         {
+            // 게임 루프 시작 시 초기화
+            foreach (Node node in graph.Nodes.Values)
+            {
+                node.Visited = false;
+            }
             int SI = int.Parse(Console.ReadLine()); // The index of the node on which the Bobnet agent is positioned this turn
 
-            // Write an action using Console.WriteLine()
-            // To debug: Console.Error.WriteLine("Debug messages...");
-
-
-            // Example: 0 1 are the indices of the nodes you wish to sever the link between
-            Console.WriteLine("0 1");
+            List<int> shorted_path = graph.Find_shorted_path(SI, EI[0]);
+            int cut_node1 = shorted_path[shorted_path.Count - 2];
+            int cut_node2 = shorted_path[shorted_path.Count - 1];
+            Console.WriteLine($"{cut_node1} {cut_node2}");
         }
-    }
-}
-class Test
-{
-    static void Main(string[] args)
-    {
-        Graph graph = new Graph();
-
-        // 그래프에 노드 추가
-        graph.AddNode(0);
-        graph.AddNode(1);
-        graph.AddNode(2);
-        graph.AddNode(3);
-
-        // 그래프에 간선 추가
-        graph.AddEdge(0, 1);
-        graph.AddEdge(0, 2);
-        graph.AddEdge(2, 3);
-
-        // BFS 수행
-        Console.WriteLine("BFS Path:");
-        graph.BFS(0, 3);
     }
 }
