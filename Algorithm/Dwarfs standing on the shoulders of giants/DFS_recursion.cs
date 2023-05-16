@@ -4,19 +4,19 @@ using System.Collections.Generic;
 class Solution
 {
     // key가 정점, value가 해당 정점에서 진행 가능한 정점들의 목록인 Dictionary
-    static Dictionary<int, List<int>> connection = new Dictionary<int, List<int>>();
+    static Dictionary<int, List<int>> node = new Dictionary<int, List<int>>();
 
     // 해당 key에서 시작하여 가능한 루트를 찾아서 최대 깊이를 반환하는 함수
     static int DFS_recursion(int number)
     {
         int max = 0; // 현재 루트에서 탐색한 최대 깊이를 저장할 변수
-        if (!connection.ContainsKey(number) || connection[number].Count == 0)
+        if (!node.ContainsKey(number) || node[number].Count == 0)
             // 현재 루트의 정점에 연결된 다른 정점이 없는 경우
             return 0;
         else
         {
             // 현재 루트의 정점에 연결된 다른 정점들을 모두 탐색
-            foreach (int item in connection[number])
+            foreach (int item in node[number])
             {
                 int temp = DFS_recursion(item); // 현재 정점에서부터 시작하여 탐색한 최대 깊이를 구함
                 if (max < temp)
@@ -35,13 +35,13 @@ class Solution
             string[] inputs = Console.ReadLine().Split(' ');
             int x = int.Parse(inputs[0]);
             int y = int.Parse(inputs[1]);
-            if (!connection.ContainsKey(x))
-                connection[x] = new List<int>();
-            connection[x].Add(y); // 정점 x에서 정점 y로 가는 간선 추가
+            if (!node.ContainsKey(x))
+                node[x] = new List<int>();
+            node[x].Add(y); // 정점 x에서 정점 y로 가는 간선 추가
         }
 
         int max = 0; // 모든 루트에 대해 최대 깊이를 비교하여 가장 큰 값을 저장할 변수
-        foreach (KeyValuePair<int, List<int>> item in connection)// 루트 노드가 한개 이상일 때가 있으므로 반복
+        foreach (KeyValuePair<int, List<int>> item in node)// 루트 노드가 무엇인지 모르기 때문에 반복
         {
             int temp = DFS_recursion(item.Key); // 각 루트에 대해 최대 깊이를 계산
             if (max < temp)

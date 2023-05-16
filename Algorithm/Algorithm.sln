@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Super Computer", "..\Super 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarCardGame", "..\War Card Game\WarCardGame.csproj", "{50DDA743-6612-47BC-8854-35783A2758E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dwarfs standing on the shoulders of giants", "Dwarfs standing on the shoulders of giants\Dwarfs standing on the shoulders of giants.csproj", "{203B860D-94CE-4332-89B7-FABD47C4DC10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dwarfs standing on the shoulders of giants", "Dwarfs standing on the shoulders of giants\Dwarfs standing on the shoulders of giants.csproj", "{203B860D-94CE-4332-89B7-FABD47C4DC10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Death First Search - Episode 1", "Death First Search - Episode 1\Death First Search - Episode 1.csproj", "{EE3A8D04-8D28-480B-86D5-C3FC3DE9919D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{203B860D-94CE-4332-89B7-FABD47C4DC10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{203B860D-94CE-4332-89B7-FABD47C4DC10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{203B860D-94CE-4332-89B7-FABD47C4DC10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE3A8D04-8D28-480B-86D5-C3FC3DE9919D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3A8D04-8D28-480B-86D5-C3FC3DE9919D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3A8D04-8D28-480B-86D5-C3FC3DE9919D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3A8D04-8D28-480B-86D5-C3FC3DE9919D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
