@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 namespace Dijkstra
 {
-    public class Node
+    public class NodeInformation
     {
         public string ID; // 노드의 식별자
         public string Name; // 노드의 이름
         public double Latitude, Longitude; // 노드의 위도와 경도
         public int StopType; // 정류장 유형
-        public List<Node> Neighbors { get; set; } // 인접한 노드들의 리스트
+        public List<NodeInformation> Neighbors { get; set; } // 인접한 노드들의 리스트
 
-        public Node(string ID_, string Name_, double Latitude_, double Longitude_, int StopType_)
+        public NodeInformation(string ID_, string Name_, double Latitude_, double Longitude_, int StopType_)
         {
             ID = ID_;
             Name = Name_;
@@ -22,12 +22,12 @@ namespace Dijkstra
         }
     }
 
-    public class Dijkstra
+    public class Graph
     {
         int V; // 노드의 수
         Dictionary<string, List<(string vertex, double distance)>> adjList; // 인접 리스트
 
-        public Dijkstra(int vertices)
+        public Graph(int vertices)
         {
             V = vertices;
             adjList = new Dictionary<string, List<(string, double)>>();
@@ -43,7 +43,7 @@ namespace Dijkstra
             adjList[start].Add((end, weight));
         }
 
-        public List<string> FindShortestPath(string start, string end)
+        public List<string> Dijkstra(string start, string end)
         {
             Dictionary<string, double> distance = new Dictionary<string, double>(); // 시작 노드로부터의 거리를 저장하는 딕셔너리
 
@@ -112,8 +112,8 @@ namespace Dijkstra
             string endPoint = Console.ReadLine(); // 도착 지점 입력
             int N = int.Parse(Console.ReadLine()); // 정류장 수 입력
 
-            List<Node> Stops = new List<Node>(); // 정류장 리스트 생성
-            Dijkstra dijkstra = new Dijkstra(N); // Dijkstra 객체 생성
+            List<NodeInformation> Stops = new List<NodeInformation>(); // 정류장 리스트 생성
+            Graph dijkstra = new Graph(N); // Dijkstra 객체 생성
 
             for (int i = 0; i < N; i++)
             {
@@ -126,7 +126,7 @@ namespace Dijkstra
 
                 dijkstra.AddNode(id); // Dijkstra 객체에 정류장 추가
 
-                Stops.Add(new Node(id, name, lat, lon, stopType)); // 정류장 리스트에 정류장 추가
+                Stops.Add(new NodeInformation(id, name, lat, lon, stopType)); // 정류장 리스트에 정류장 추가
             }
             int M = int.Parse(Console.ReadLine()); // 경로 수 입력
             for (int i = 0; i < M; i++)
@@ -137,7 +137,7 @@ namespace Dijkstra
                 dijkstra.AddEdge(route[0], route[1], weight);
             }
 
-            List<string> shortestPath = dijkstra.FindShortestPath(startPoint, endPoint); // 최단 경로 탐색
+            List<string> shortestPath = dijkstra.Dijkstra(startPoint, endPoint); // 최단 경로 탐색
 
             if (shortestPath.Count <= 0) // 최단 경로가 없는 경우 (불가능한 경우)
             {
@@ -153,7 +153,7 @@ namespace Dijkstra
             }
         }
 
-        static double CalcDist(Node node1, Node node2)
+        static double CalcDist(NodeInformation node1, NodeInformation node2)
         {
             double x = (node2.Longitude - node1.Longitude) * Math.Cos((node1.Latitude + node2.Latitude) / 2); // 경도 차이 계산
             double y = (node2.Latitude - node1.Latitude); // 위도 차이 계산
