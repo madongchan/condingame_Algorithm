@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace RollerCoaster
 {
@@ -109,15 +110,15 @@ namespace RollerCoaster
         // C: 운행 횟수
         // N: 그룹의 수
         // groups: 그룹별 인원수 리스트
-        static long CalculateRevenue(int L, int C, int N, List<int> groups)
+        static BigInteger CalculateRevenue(int L, int C, int N, List<int> groups)
         {
             CircularQueue<int> circularQueue = new CircularQueue<int>(groups);
-            long totalRevenue = 0; // 총소득
+            BigInteger totalRevenue = new BigInteger(); // 총소득
 
             int totalPassengers = groups.Sum();
             if (totalPassengers <= L) // 좌석이 전체 대기자보다 같거나 많으면 하루 운행 횟수를 곱하여 하루 매출액을 바로 구할 수 있다.
             {
-                return totalRevenue = (long)totalPassengers * C; // long으로 캐스팅하여 계산
+                return totalRevenue = totalPassengers * C;
             }
             else
             {
@@ -161,7 +162,7 @@ namespace RollerCoaster
             {
                 pi.Add(int.Parse(Console.ReadLine()));
             }
-            long totalEarnings = CalculateRevenue(L, C, N, pi);
+            BigInteger totalEarnings = CalculateRevenue(L, C, N, pi);
             Console.WriteLine(totalEarnings);
         }
     }
