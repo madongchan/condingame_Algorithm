@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TAN NETWORK", "TAN NETWORK\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roller Coaster", "Roller Coaster\Roller Coaster.csproj", "{B1C799D0-71ED-40BB-BDBC-2C02595C0EF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithm Test", "Algorithm Test\Algorithm Test.csproj", "{0BA05051-BDE2-4BD5-B277-1957BDDC9EAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maze", "Maze\Maze.csproj", "{787FDD58-8E48-41BE-8FD0-0B1A76B05CE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +65,10 @@ Global
 		{B1C799D0-71ED-40BB-BDBC-2C02595C0EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1C799D0-71ED-40BB-BDBC-2C02595C0EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1C799D0-71ED-40BB-BDBC-2C02595C0EF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BA05051-BDE2-4BD5-B277-1957BDDC9EAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BA05051-BDE2-4BD5-B277-1957BDDC9EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BA05051-BDE2-4BD5-B277-1957BDDC9EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BA05051-BDE2-4BD5-B277-1957BDDC9EAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{787FDD58-8E48-41BE-8FD0-0B1A76B05CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{787FDD58-8E48-41BE-8FD0-0B1A76B05CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{787FDD58-8E48-41BE-8FD0-0B1A76B05CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{787FDD58-8E48-41BE-8FD0-0B1A76B05CE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
